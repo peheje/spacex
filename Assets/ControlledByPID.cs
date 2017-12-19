@@ -10,20 +10,26 @@ public class ControlledByPID : MonoBehaviour {
     private PIDController zPID = new PIDController();
 
     void Start () {
+        UnityEditor.SceneView.FocusWindowIfItsOpen(typeof(UnityEditor.SceneView));
+
+
         body = GetComponent<Rigidbody>();
-	}
+        Debug.Log("controlled by pid");
+    }
 	
-	void UpdateFixed () {
+	void FixedUpdate () {
         // Get x and z error
         var target = 0;
-        var dx = body.position.x - target;
-        var dz = body.position.z - target;
+        var dx = body.rotation.x - target;
+        var dz = body.rotation.z - target;
 
         // Get control
         var xControl = xPID.GetControl(dx);
         var zControl = zPID.GetControl(dz);
 
+        Debug.Log("force x,z: " + xControl + " " + zControl);
+
         // Apply control
-        body.AddRelativeForce(xControl, 0, zControl, ForceMode.Impulse);
+        body.AddRelativeTorque(xControl, 0, zControl, ForceMode.Impulse);
     }
 }
