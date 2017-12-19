@@ -7,9 +7,9 @@ namespace Assets
 {
     public class PIDController
     {
-        public float kp = 1.0f;
-        public float ki = 0.0f;
-        public float kd = 0.0f;
+        public float kp = 1.51f;
+        public float ki = 0.01f;
+        public float kd = 4.66f;
 
         private float lastError;
         private float derivative;
@@ -20,7 +20,7 @@ namespace Assets
 
         }
 
-        public float GetControl(float error)
+        public float GetControl(float error, float kp, float ki, float kd)
         {
             error *= -1;
             integral += error;
