@@ -45,15 +45,17 @@ public class ControlledByPID : MonoBehaviour {
         var dx = body.rotation.x - target;
         var dy = body.rotation.y - target;
         var dz = body.rotation.z - target;
-        var dw = body.position.y - floorPosition;
 
-        Debug.Log("dw" + dw);
 
-        // Get control
+        // var dw = body.position.y - floorPosition;
+        var dw = body.velocity.y;
+
+        // Get gimbal control
         var xControl = xPID.GetControl(dx, kp, ki, kd);
         var yControl = yPID.GetControl(dy, kp, ki, kd);
         var zControl = zPID.GetControl(dz, kp, ki, kd);
 
+        // Get rocket control
         var wControl = wPID.GetControl(dw, kpw, kiw, kdw);
 
         // Limit control
@@ -67,6 +69,6 @@ public class ControlledByPID : MonoBehaviour {
 
         // Apply control
         body.AddRelativeTorque(xControl, yControl, zControl, ForceMode.Force);
-        body.AddForce(0, -wControl, 0, ForceMode.Force);
+        body.AddForce(0, wControl, 0, ForceMode.Force);
     }
 }
