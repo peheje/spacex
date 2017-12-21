@@ -344,7 +344,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1325756080
+  randomSeed: -101399127
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3705,13 +3705,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566627020}
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 1.112, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 18.17, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1566627028
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3738,9 +3738,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5289aa3a381e64bb54286a8c837233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floor: {fileID: 2119613172}
   kp: 5
   ki: 0.01
   kd: 150
+  kpw: 0
+  kiw: 0
+  kdw: 0
 --- !u!114 &1566627030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3830,7 +3834,7 @@ GameObject:
   - component: {fileID: 2119613174}
   - component: {fileID: 2119613173}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3898,7 +3902,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2119613172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3000000, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 50, y: 10, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
