@@ -8,12 +8,20 @@ public class ControlledByPID : MonoBehaviour {
     private PIDController yPID = new PIDController();
     private PIDController zPID = new PIDController();
 
-    public float kp = 1.51f;
-    public float ki = 0.01f;
-    public float kd = 4.66f;
+    public float kp = 0.0f;
+    public float ki = 0.0f;
+    public float kd = 0.0f;
+
+    void OnValidate()
+    {
+        // Clamp public PID coefficients
+        kp = Mathf.Clamp(kp, 0.0f, 100.0f);
+        ki = Mathf.Clamp(ki, 0.0f, 100.0f);
+        kd = Mathf.Clamp(kd, 0.0f, 100.0f);
+    }
 
     void Start () {
-        UnityEditor.EditorWindow.FocusWindowIfItsOpen(typeof(UnityEditor.SceneView));
+        // UnityEditor.EditorWindow.FocusWindowIfItsOpen(typeof(UnityEditor.SceneView));
 
         body = GetComponent<Rigidbody>();
         Debug.Log("controlled by pid");
@@ -31,9 +39,15 @@ public class ControlledByPID : MonoBehaviour {
         var yControl = yPID.GetControl(dy, kp, ki, kd);
         var zControl = zPID.GetControl(dz, kp, ki, kd);
 
+        // Limit control
+        const float maxVal = 1.0f;
+        xControl = Mathf.Clamp(xControl, -maxVal, maxVal);
+        yControl = Mathf.Clamp(yControl, -maxVal, maxVal);
+        zControl = Mathf.Clamp(zControl, -maxVal, maxVal);
+
         Debug.Log("force x,z: " + xControl + " " + zControl);
 
         // Apply control
-        body.AddRelativeTorque(xControl, yControl, zControl, ForceMode.Impulse);
+        body.AddRelativeTorque(xControl, yControl, zControl, ForceMode.Force);
     }
 }
