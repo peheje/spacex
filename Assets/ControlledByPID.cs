@@ -15,9 +15,9 @@ public class ControlledByPID : MonoBehaviour {
     void OnValidate()
     {
         // Clamp public PID coefficients
-        kp = Mathf.Clamp(kp, 0.0f, 100.0f);
-        ki = Mathf.Clamp(ki, 0.0f, 100.0f);
-        kd = Mathf.Clamp(kd, 0.0f, 100.0f);
+        kp = Mathf.Clamp(kp, 0.0f, kp);
+        ki = Mathf.Clamp(ki, 0.0f, ki);
+        kd = Mathf.Clamp(kd, 0.0f, kd);
     }
 
     void Start () {

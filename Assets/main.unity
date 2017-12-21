@@ -218,11 +218,11 @@ GameObject:
   - component: {fileID: 1566627026}
   - component: {fileID: 1566627025}
   - component: {fileID: 1566627024}
-  - component: {fileID: 1566627023}
   - component: {fileID: 1566627022}
   - component: {fileID: 1566627021}
   - component: {fileID: 1566627028}
   - component: {fileID: 1566627029}
+  - component: {fileID: 1566627030}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -344,7 +344,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1489705168
+  randomSeed: -1325756080
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3645,18 +3645,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &1566627023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1566627020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75adf212c5f993644aad3221fdb54c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
 --- !u!23 &1566627024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3717,13 +3705,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566627020}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 1.112, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!54 &1566627028
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3750,9 +3738,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5289aa3a381e64bb54286a8c837233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kp: 1
-  ki: 0.00001
-  kd: 100
+  kp: 5
+  ki: 0.01
+  kd: 150
+--- !u!114 &1566627030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1566627020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113b7db292f815c408a2525ded6f1630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxWindSpeed: 0.2
 --- !u!1 &2043576669
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,6 +3913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2128068611}
   - component: {fileID: 2128068610}
+  - component: {fileID: 2128068612}
   m_Layer: 0
   m_Name: WindZone
   m_TagString: Untagged
@@ -3926,12 +3927,12 @@ WindZone:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2128068609}
-  m_Enabled: 0
-  m_Mode: 0
-  m_Radius: 20
-  m_WindMain: 1
-  m_WindTurbulence: 1
-  m_WindPulseMagnitude: 0.5
+  m_Enabled: 1
+  m_Mode: 1
+  m_Radius: 10
+  m_WindMain: 10
+  m_WindTurbulence: 10
+  m_WindPulseMagnitude: 10
   m_WindPulseFrequency: 0.01
 --- !u!4 &2128068611
 Transform:
@@ -3940,9 +3941,21 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2128068609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -2.65}
+  m_LocalPosition: {x: 1.18, y: 3.03, z: -0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2128068612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128068609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd012f18113119b41b5205c088f1f598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  following: {fileID: 1566627020}
